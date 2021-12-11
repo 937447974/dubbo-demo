@@ -1,0 +1,55 @@
+# 服务器
+server:
+  port: 8088
+  sessiontimeout: 30
+  contextpath: /
+  undertow:
+    io-threads: 2
+    worker-threads: 30
+  session:
+    timeout: 30
+  compression:
+    enabled: true
+    mime-types: 'text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json'
+    min-response-size: 1024
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+
+spring:
+  aop:
+    proxy-target-class: true
+  profiles:
+    active: qa
+    http:
+      encoding:
+        enabled: true
+        force: true
+        charset: "utf-8"
+      messages:
+        encoding: "utf-8"
+    servlet:
+      multipart:
+        max-file-size: 100mb
+        max-request-size: 1024mb
+
+# 项目名称，dubbo会读取该值注册服务
+dubbo.application.name: app-dubbo-consumer
+# dubbo的注册中心地址，建议使用Apollo全局配置
+dubbo.registry.address: 'zookeeper://127.0.0.1:2181'
+
+main.allow-bean-definition-overriding: true
+
+security.basic.enable: false
+
+info:
+  app:
+    encoding: "utf-8"
+    java:
+      source: "1.8.0_111"
+      target: "1.8.0_111"
+
+banner.charset: utf-8
+
